@@ -1,7 +1,7 @@
 var rolefarmer = {
 
     /** @param {Creep} creep **/
-    run: function(creep) {
+    run: function(creep, sources, targets) {
 	   if(!creep.memory.havesting && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.havesting = true;
             creep.say('🔄 harvest');
@@ -10,30 +10,17 @@ var rolefarmer = {
 	        creep.memory.havesting = false;
 	        creep.say('🔨 transfer');
 	    }
-
 	    if(creep.memory.havesting) {
-	        var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], {visualizePathStyle: {stroke: '#ffaa00'}});
+            if(creep.harvest(sources) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources, {visualizePathStyle: {stroke: '#ffaa00'}});
             }
 	    }
         else {
-            var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                                structure.structureType == STRUCTURE_SPAWN ||
-                                structure.structureType == STRUCTURE_TOWER) && 
-                                structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
-                    }
-            });
+            
             if(targets.length > 0) {
-                // for(var i = 0; i < targets.length;) {
-                    // if(targets[i].store.getFreeCapacity() > 0) {
-                        if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                        }
-                    // }
-                // }
+                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
             }
         }
 	}

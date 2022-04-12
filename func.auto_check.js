@@ -13,7 +13,7 @@ var check = {
         if(farmer.length < 2) {
             var newName = 'farmer' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE, WORK], newName, 
+                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,CARRY, WORK], newName, 
                 {memory: {role: 'farmer'}});
         }
     
@@ -50,6 +50,25 @@ var check = {
             // console.log('Spawning new harvester: ' + newName);
             Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE, WORK], newName, 
                 {memory: {role: 'upgrader'}});
+        }
+    
+        if(Game.spawns['716'].spawning) {
+            var spawningCreep = Game.creeps[Game.spawns['716'].spawning.name];
+            Game.spawns['716'].room.visual.text(
+                '🛠️' + spawningCreep.memory.role,
+                Game.spawns['716'].pos.x + 1, 
+                Game.spawns['716'].pos.y, 
+            {align: 'left', opacity: 0.8});
+        }
+        
+        var keeper = _.filter(Game.creeps, (creep) => creep.memory.role == 'keeper');
+        // console.log('Harvesters: ' + harvesters.length);
+
+        if(keeper.length < 2) {
+            var newName = 'keeper' + Game.time;
+            // console.log('Spawning new harvester: ' + newName);
+                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
+                {memory: {role: 'keeper'}});
         }
     
         if(Game.spawns['716'].spawning) {
