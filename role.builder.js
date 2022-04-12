@@ -19,6 +19,18 @@ var roleBuilder = {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }
+            else {
+                var targets2 = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.hits < structure.hitsMax) && (structure.hits < 10000)
+                    }
+                });
+                if(targets2.length) {
+                    if(creep.repair(targets2[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets2[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                    }
+                }
+            }
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);

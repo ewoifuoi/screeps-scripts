@@ -20,7 +20,9 @@ module.exports.loop = function () {
             emergency = false;
         }
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax
+            filter: (structure) => {
+                return (structure.hits < structure.hitsMax) && (structure.hits < 10000);
+            }
         });
         if(tower.store[RESOURCE_ENERGY] > 800) {
             if(closestDamagedStructure && !attacked) {
@@ -43,7 +45,6 @@ module.exports.loop = function () {
    
     var sources = Game.spawns['716'].room.find(FIND_SOURCES);
 
-
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'farmer') {
@@ -53,12 +54,11 @@ module.exports.loop = function () {
             else if(targets.length > 0) {
                 roleHarvester.run(creep, sources[1], targets);
             }
-            else if(tower.store[RESOURCE_ENERGY] < 800) {
+            else if(tower.store[RESOURCE_ENERGY] < 1000) {
                 roleKeeper.run(creep, tower, sources[1]);
             }
             // else roleUpgrader2.run(creep);
-            
-            else roleBuilder.run(creep);
+            // else roleBuilder.run(creep);
             
         }
         if(creep.memory.role == 'upgrader') {

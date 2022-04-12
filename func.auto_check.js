@@ -13,7 +13,7 @@ var check = {
         if(farmer.length < 2) {
             var newName = 'farmer' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,CARRY, WORK], newName, 
+                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY], newName, 
                 {memory: {role: 'farmer'}});
         }
     
@@ -64,7 +64,7 @@ var check = {
         var keeper = _.filter(Game.creeps, (creep) => creep.memory.role == 'keeper');
         // console.log('Harvesters: ' + harvesters.length);
 
-        if(keeper.length < 2) {
+        if(keeper.length < 4) {
             var newName = 'keeper' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
                 Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
