@@ -4,6 +4,7 @@ var roleUpgrader2 = require('role.upgrader2');
 var roleBuilder = require('role.builder');
 var auto_check = require('func.auto_check');
 var roleKeeper = require('role.towerKeeper');
+var roleScout = require('role.scout');
 
 module.exports.loop = function () {
     
@@ -32,10 +33,10 @@ module.exports.loop = function () {
         }
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
-                return (structure.hits < structure.hitsMax) && (structure.hits < 10000);    // 炮塔给建筑 回血 (墙上限 10000)
+                return (structure.hits < structure.hitsMax) && (structure.hits < 20000);    // 炮塔给建筑 回血 (墙上限 10000)
             }
         });
-        if(tower.store[RESOURCE_ENERGY] > 800) {            // 炮塔 存量 > 800 , 启动回血模式
+        if(tower.store[RESOURCE_ENERGY] > 600) {            // 炮塔 存量 > 800 , 启动回血模式
             if(closestDamagedStructure && !attacked) {
                 tower.repair(closestDamagedStructure);
             }
@@ -83,12 +84,15 @@ module.exports.loop = function () {
             else if(targets.length > 0) {
                 roleHarvester.run(creep, sources[1], targets);
             }
-            else roleUpgrader2.run(creep);
-            // else roleBuilder.run(creep);
+            // else roleUpgrader2.run(creep);
+            else roleBuilder.run(creep);
         }
         if(creep.memory.role == 'keeper') {
             roleKeeper.run(creep, tower, sources[0]);
             // roleHarvester.run(creep, sources[1], targets);
+        }
+        if(creep.memory.role == 'scout') {
+            roleScout.run(creep, Game.flags['scout']);
         }
     }
 }

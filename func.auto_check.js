@@ -13,7 +13,7 @@ var check = {
         if(farmer.length < 2) {
             var newName = 'farmer' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY], newName, 
+                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY, MOVE, CARRY, WORK], newName, 
                 {memory: {role: 'farmer'}});
         }
     
@@ -29,7 +29,7 @@ var check = {
         if(builder.length < 3) {
             var newName = 'builder' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-            Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY], newName, 
+            Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY, MOVE, CARRY, WORK], newName, 
                 {memory: {role: 'builder'}});
         }
     
@@ -48,7 +48,7 @@ var check = {
         if(grader.length < 4) {
             var newName = 'upgrader' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-            Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE, WORK], newName, 
+            Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY, MOVE, CARRY, WORK], newName, 
                 {memory: {role: 'upgrader'}});
         }
     
@@ -67,7 +67,7 @@ var check = {
         if(keeper.length < 4) {
             var newName = 'keeper' + Game.time;
             // console.log('Spawning new harvester: ' + newName);
-                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK,CARRY,MOVE,MOVE,MOVE], newName, 
+                Game.spawns['716'].spawnCreep([WORK,CARRY,MOVE,WORK, WORK, MOVE, CARRY, MOVE, CARRY, WORK], newName, 
                 {memory: {role: 'keeper'}});
         }
     
