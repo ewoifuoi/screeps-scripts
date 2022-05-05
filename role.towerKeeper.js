@@ -2,6 +2,7 @@ var roleKeeper = {
 
     /** @param {Creep} creep **/
     run: function(creep, tower, source) {
+        if(!tower) console.log("!!!")
 	   if(!creep.memory.havesting && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.havesting = true;
             creep.say('🔄 harvest');

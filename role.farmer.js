@@ -19,6 +19,7 @@ var rolefarmer = {
             
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    // console.log("now I am going to" + targets[0]);
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }
